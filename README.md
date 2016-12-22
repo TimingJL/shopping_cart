@@ -184,5 +184,59 @@ Next we want to add logic to these button.
 	</html>
 ```
 
+And add links to this page:
+```html
+
+	<!DOCTYPE html>
+	<html>
+	  <head>
+	    <title>ShoppingCart</title>
+	    <%= csrf_meta_tags %>
+
+	    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	  </head>
+
+	  <body>
+	  	<% if user_signed_in? %>
+	  		<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+	  	<% else %>
+		  	<%= link_to 'Sign In', new_user_session_path %>
+		  	<%= link_to 'Sign Up', new_user_registration_path %>
+	  	<% end %>
+
+	  	<br><br>
+	  	<%= link_to 'Home', root_path %>
+	  	<%= link_to 'About', page_about_path %>
+	  	<%= link_to 'FAQs', page_faqs_path %>
+	  	<%= link_to 'Contact', page_contact_path %>
+
+
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>  
+	    <%= yield %>
+	  </body>
+	</html>
+```
+
+
+
+
+# Reference
+
+Ruby On Rails Shopping Cart Tutorial - 1
+https://www.youtube.com/watch?v=4jVOnrUvCQQ
+
+Ruby on Rails Shopping Cart - Creating App Tutorial - 2
+https://www.youtube.com/watch?v=4OPdxPawXrw
+
+Ruby On Rails Shopping Cart Tutorial - Adding Style 3
+https://www.youtube.com/watch?v=Wo2-PcGD4mE
+
+Ruby on Rails Shopping Cart Tutorial Adding Cart Logic 4
+https://www.youtube.com/watch?v=WRVwfVUaj_Y
+
+Ruby On Rails Tutorial Adding Items To Shopping Cart - 5
+https://www.youtube.com/watch?v=HSMqi913SL4
 
 To be continued...
