@@ -219,7 +219,129 @@ And add links to this page:
 	</html>
 ```
 
+# Styling Navigation
+In `app/views/layouts/application.html.erb`, we wrap these button into `nav`.
+```html
 
+	<!DOCTYPE html>
+	<html>
+	  <head>
+	    <title>ShoppingCart</title>
+	    <%= csrf_meta_tags %>
+
+	    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	  </head>
+
+	  <body>
+
+	  	<nav id='nav'>
+		  	<%= link_to 'Home', root_path %>
+		  	<%= link_to 'About', page_about_path %>
+		  	<%= link_to 'FAQs', page_faqs_path %>
+		  	<%= link_to 'Contact', page_contact_path %>
+
+		  	<% if user_signed_in? %>
+		  		<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+		  	<% else %>
+			  	<%= link_to 'Sign In', new_user_session_path %>
+			  	<%= link_to 'Sign Up', new_user_registration_path %>
+		  	<% end %>
+	  	</nav>
+
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>  
+	    <%= yield %>
+	  </body>
+	</html>
+```
+
+
+To styling, in `app/assets/stylesheets/application.css`
+```css
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#nav {
+  width: 100%;
+  height: 40px;
+  background: #000;
+  float: left;
+}
+
+#page_nav a, #sign_in a {
+  line-height: 40px;
+  color: #fff;
+  padding: 0 20px 0 20px;
+  text-decoration: none;
+}
+
+#page_nav {
+  margin: 0 0 0 5%;
+  float: left;
+}
+
+#sign_in {
+  float: right;
+  margin: 0 5% 0 0;
+}
+
+#main_wrap {
+  width: 90%;
+  float: left;
+  margin: 20px 5% 0 5%;
+}
+```
+
+And in `app/views/layouts/application.html.erb`
+```html
+
+	<!DOCTYPE html>
+	<html>
+	  <head>
+	    <title>ShoppingCart</title>
+	    <%= csrf_meta_tags %>
+
+	    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	  </head>
+
+	  <body>
+
+	  	<nav id='nav'>
+	  		<div id='page_nav'>
+			  	<%= link_to 'Home', root_path %>
+			  	<%= link_to 'About', page_about_path %>
+			  	<%= link_to 'FAQs', page_faqs_path %>
+			  	<%= link_to 'Contact', page_contact_path %>
+			</div>
+
+			<div id='sign_in'>
+			  	<% if user_signed_in? %>
+			  		<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+			  	<% else %>
+				  	<%= link_to 'Sign In', new_user_session_path %>
+				  	<%= link_to 'Sign Up', new_user_registration_path %>
+			  	<% end %>
+		  	</div>
+	  	</nav>
+
+	  	<div id="main_wrap">
+			<p class="notice"><%= notice %></p>
+			<p class="alert"><%= alert %></p>  
+			<%= yield %>
+		</div>
+
+	  </body>
+	</html>
+```
+![image](https://github.com/TimingJL/shopping_cart/blob/master/pic/basic_styling.jpeg)
+
+
+
+To be continued...
 
 
 # Reference
@@ -239,4 +361,3 @@ https://www.youtube.com/watch?v=WRVwfVUaj_Y
 Ruby On Rails Tutorial Adding Items To Shopping Cart - 5
 https://www.youtube.com/watch?v=HSMqi913SL4
 
-To be continued...
