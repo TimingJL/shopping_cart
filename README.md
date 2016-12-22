@@ -130,6 +130,59 @@ After restaring our rails server and going to `http://localhost:3000/users/sign_
 ![image](https://github.com/TimingJL/shopping_cart/blob/master/pic/login.jpeg)
 
 
+Then we want to add sign_in/sign_out button on the top of the page.
+So in `app/views/layouts/application.html.erb`, we add:
+```html
+
+	<!DOCTYPE html>
+	<html>
+	  <head>
+	    <title>ShoppingCart</title>
+	    <%= csrf_meta_tags %>
+
+	    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	  </head>
+
+	  <body>
+	  	<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+	  	<%= link_to 'Sign In', new_user_session_path %>
+	  	<%= link_to 'Sign Up', new_user_registration_path %>
+
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>  
+	    <%= yield %>
+	  </body>
+	</html>
+```
+
+Next we want to add logic to these button.
+```html
+
+	<!DOCTYPE html>
+	<html>
+	  <head>
+	    <title>ShoppingCart</title>
+	    <%= csrf_meta_tags %>
+
+	    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	  </head>
+
+	  <body>
+	  	<% if user_signed_in? %>
+	  		<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+	  	<% else %>
+		  	<%= link_to 'Sign In', new_user_session_path %>
+		  	<%= link_to 'Sign Up', new_user_registration_path %>
+	  	<% end %>
+
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>  
+	    <%= yield %>
+	  </body>
+	</html>
+```
 
 
 To be continued...
