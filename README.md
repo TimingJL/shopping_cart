@@ -340,6 +340,51 @@ And in `app/views/layouts/application.html.erb`
 ![image](https://github.com/TimingJL/shopping_cart/blob/master/pic/basic_styling.jpeg)
 
 
+To add our first product, we want to add a link to our home page.
+So in `app/views/layouts/application.html.erb`, we add `<%= link_to 'Shop', products_path %>` to our navigation bar.
+```html
+
+	<!DOCTYPE html>
+	<html>
+	  <head>
+	    <title>ShoppingCart</title>
+	    <%= csrf_meta_tags %>
+
+	    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	  </head>
+
+	  <body>
+
+	  	<nav id='nav'>
+	  		<div id='page_nav'>
+			  	<%= link_to 'Home', root_path %>
+			  	<%= link_to 'Shop', products_path %>
+			  	<%= link_to 'About', page_about_path %>
+			  	<%= link_to 'FAQs', page_faqs_path %>
+			  	<%= link_to 'Contact', page_contact_path %>
+			</div>
+
+			<div id='sign_in'>
+			  	<% if user_signed_in? %>
+			  		<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+			  	<% else %>
+				  	<%= link_to 'Sign In', new_user_session_path %>
+				  	<%= link_to 'Sign Up', new_user_registration_path %>
+			  	<% end %>
+		  	</div>
+	  	</nav>
+
+	  	<div id="main_wrap">
+			<p class="notice"><%= notice %></p>
+			<p class="alert"><%= alert %></p>  
+			<%= yield %>
+		</div>
+
+	  </body>
+	</html>
+```
+![image](https://github.com/TimingJL/shopping_cart/blob/master/pic/first_product.jpeg)
 
 To be continued...
 
